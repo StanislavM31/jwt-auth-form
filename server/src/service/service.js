@@ -27,4 +27,13 @@ async function deleteUserById(id){
     return data;
 }
 
-module.exports = {createUser, getAllUsers, getUserById, updateUserById, deleteUserById}
+async function authorization(email, password){
+    const userFound = await getUserByEmailDB(email);
+    if(!userFound.length) throw new Error('пользователя с таким email не существует');
+    const isMatch = await bcrypt.compare(password, userFound[0].password);
+    console.log(isMatch);
+    if(!isMatch) throw new Error('пароли не совпадают. Авторизация не произведена');
+    return `Авторизация успешна!`;
+}
+
+module.exports = {authorization, createUser, getAllUsers, getUserById, updateUserById, deleteUserById}

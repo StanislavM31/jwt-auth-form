@@ -1,8 +1,20 @@
 const express = require("express")
-const {createUser, getAllUsers, getUserById, updateUserById, deleteUserById } = require ("../service/service")
-const route = express.Router();
+const {authorization, createUser, getAllUsers, getUserById, updateUserById, deleteUserById } = require ("../service/service")
+const routeUser = express.Router();
+const routeApi = express.Router();
 
-route.post('/', async (req, res)=>{
+
+routeApi.post('/', async (req,res)=>{
+    try {
+        const{email, password} = req.body;
+        const data = await authorization(email, password);
+        res.send(data);
+    } catch (error) {
+        res.send(error.message)
+    }
+})
+
+routeUser.post('/', async (req, res)=>{
     try {
         const{name, surname, email, password} = req.body;
         const data = await createUser(name, surname, email, password)
@@ -11,7 +23,7 @@ route.post('/', async (req, res)=>{
         res.send(error.message);
     }
 })
-route.get('/', async (req, res)=>{
+routeUser.get('/', async (req, res)=>{
     try {
         const data = await getAllUsers();
         res.send(data)
@@ -19,7 +31,7 @@ route.get('/', async (req, res)=>{
         res.send(error.message);
     }
 })
-route.get('/:id', async (req, res)=>{
+routeUser.get('/:id', async (req, res)=>{
     try {
         const{id} = req.params;
         const data = await getUserById(id);
@@ -28,7 +40,7 @@ route.get('/:id', async (req, res)=>{
         res.send(error.message);
     }
 })
-route.put('/:id', async (req, res)=>{
+routeUser.put('/:id', async (req, res)=>{
     try {
         const{id} = req.params;
         const{name, surname, email, password} = req.body;
@@ -38,7 +50,7 @@ route.put('/:id', async (req, res)=>{
         res.send(error.message);
     }
 })
-route.delete('/:id', async (req, res)=>{
+routeUser.delete('/:id', async (req, res)=>{
     try {
         const{id} = req.params;
         const data = await deleteUserById(id);
@@ -48,4 +60,4 @@ route.delete('/:id', async (req, res)=>{
     }
 })
 
-module.exports = route
+module.exports = {routeUser, routeApi}
