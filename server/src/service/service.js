@@ -33,7 +33,7 @@ async function authorization(email, password){
     const isMatch = await bcrypt.compare(password, userFound[0].password);
     console.log(isMatch);
     if(!isMatch) throw new Error('пароли не совпадают. Авторизация не произведена');
-    return `Авторизация успешна!`;
+    return userFound;
 }
 
 module.exports = {authorization, createUser, getAllUsers, getUserById, updateUserById, deleteUserById}
