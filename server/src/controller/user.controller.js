@@ -1,10 +1,10 @@
 const express = require("express")
 const {authorization, createUser, getAllUsers, getUserById, updateUserById, deleteUserById } = require ("../service/service")
 const routeUser = express.Router();
-const routeApi = express.Router();
+const api = express.Router();
 
 
-routeApi.post('/', async (req,res)=>{
+api.post('/', async (req,res)=>{
     try {
         const{email, password} = req.body;
         const data = await authorization(email, password);
@@ -60,4 +60,4 @@ routeUser.delete('/:id', async (req, res)=>{
     }
 })
 
-module.exports = {routeUser, routeApi}
+module.exports = {routeUser, api}
