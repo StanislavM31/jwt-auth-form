@@ -2,12 +2,15 @@ import Header from "../../Components/Header/Header";
 import style from "./style.module.scss";
 import {Link} from "react-router-dom"
 import { useState } from "react";
+import axios from "axios";
 
 export default function Register() {
   const[data, setData] = useState({name:"", surname:"", email:"", password:""})
 
   async function sendData(){
   console.log(data);
+  const response = await axios.post('http://localhost:3001/user', data);
+  console.log(response.data[0]);
   }
   async function change(){
     setData({...data, [event.target.name]: event.target.value});
