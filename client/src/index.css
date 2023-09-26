@@ -12,3 +12,18 @@ body{
   max-width:905px;
   margin: auto;
 }
+a{
+  color: black;
+}
+input[placeholder]{
+  font: 500 14px "Inter"
+}
+a, input, .button:hover{
+  cursor: pointer;
+}
+span{
+  color: #12141A;
+  font: 500 14px "Inter";
+  line-height: 20px;
+  text-decoration-line: underline;
+}

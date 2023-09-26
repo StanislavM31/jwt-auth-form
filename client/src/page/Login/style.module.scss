@@ -20,9 +20,9 @@
   font: 400 14px "Open Sans";
   background-color: #228be6;
 }
+.button:hover{
+  cursor: pointer;
+}
 .text{
     text-align: end;
-    span{
-        font-style: #12141A;;
-    }
 }

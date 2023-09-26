@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Header from "../../Components/Header/Header";
 import style from "./style.module.scss";
 
@@ -22,7 +23,7 @@ export default function Login() {
       </div>
       <div className={style.button}>Continue</div>
       <div className={style.text}>
-        Not registered yet? <span>Sign Up</span>
+        Not registered yet? <Link to={"/reg"}><span>Sign Up</span></Link>
       </div>
     </div>
   );

@@ -10,7 +10,7 @@ export default function Register() {
   console.log(data);
   }
   async function change(){
-    setData({...data, [event.target.name]: event.target.name});
+    setData({...data, [event.target.name]: event.target.value});
   }
   return (
     <>
@@ -42,7 +42,7 @@ export default function Register() {
         </div>
         <div className={style.button} onClick={sendData}>Continue</div>
         <div className={style.text}>
-          Not registered yet? <Link to={'/'}><span>Sign Up</span></Link>
+          Already registered?<Link to={'/'}><span> Sign In</span></Link>
         </div>
       </div>
       </div>
