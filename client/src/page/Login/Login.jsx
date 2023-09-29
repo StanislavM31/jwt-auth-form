@@ -1,15 +1,16 @@
 import { Link } from "react-router-dom";
 import Header from "../../Components/Header/Header";
 import style from "./style.module.scss";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import axios from 'axios'
-import useAuth from "../../hook/useAuth";
+
 import { useNavigate } from "react-router-dom";
+import MyContext from "../../Context/Context";
 
 export default function Login() {
   const navigate = useNavigate()
+  const {logIn} = useContext(MyContext)
 
-  const {logIn} = useAuth();
 
   const[data, setData] = useState({email:"", password:""});
 
